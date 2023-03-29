@@ -1,4 +1,4 @@
-from rest_framework import serializers
+from rest_framework import serializers, generics
 from . models import Profile
 
 
@@ -14,4 +14,9 @@ class ProfileSeralizer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = '__all__'
-        
+
+
+class ProfileDetailer(generics.RetrieveUpdateAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSeralizer
+    
