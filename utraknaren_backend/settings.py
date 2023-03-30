@@ -119,7 +119,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-rebahama-utraknarenback-ty508lx8274.ws-eu92.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['https://8000-rebahama-utraknarenback-ty508lx8274.ws-eu93.gitpod.io']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/

@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MinValueValidator
 from django.core.validators import MaxValueValidator
 from django.contrib.auth.models import User
+from .countmodel import Calculator
 
 
 class Post(models.Model):
