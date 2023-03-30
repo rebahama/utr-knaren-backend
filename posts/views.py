@@ -14,7 +14,8 @@ class PostList(generics.ListCreateAPIView):
     filter_backends = [DjangoFilterBackend]
 
     filterset_fields = [
-        'calculate__price'
+        'calculate__price',
+        'owner__profile'
     ]
 
 
