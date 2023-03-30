@@ -4,6 +4,7 @@ from . models import Post
 
 class PostSerializer(serializers.ModelSerializer):
     is_owner = serializers.SerializerMethodField()
+    calculate = serializers.IntegerField(source='calculate.price')
 
     def get_is_owner(self, obj):
         """ How to check for profile ownership"""
