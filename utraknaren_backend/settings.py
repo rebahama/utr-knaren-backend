@@ -9,8 +9,9 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-import os
 from pathlib import Path
+import os
+import dj_database_url
 
 if os.path.exists('env.py'):
     import env
@@ -44,11 +45,20 @@ REST_AUTH_SERIALIZERS = {
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['utraknare-drf.herokuapp.com', 'localhost']
+
+if 'CLIENT_ORIGIN_DEV' in os.environ:
+    extracted_url = re.match(r'^.+-',
+                             os.environ.get('CLIENT_ORIGIN_DEV', ''),
+                             re.IGNORECASE).group(0)
+    CORS_ALLOWED_ORIGIN_REGEXES = [
+        rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
+    ]
 
 
+CORS_ALLOW_CREDENTIALS = True
 # Application definition
 
 INSTALLED_APPS = [
@@ -67,6 +77,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'dj_rest_auth.registration',
     'django_filters',
+    'corsheaders',
 
 
     'profiles',
@@ -74,6 +85,7 @@ INSTALLED_APPS = [
 ]
 SITE_ID = 1
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -107,11 +119,14 @@ WSGI_APPLICATION = 'utraknaren_backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    } if 'DEV' in os.environ else dj_database_url.parse(
+        os.environ.get('DATABASE_URL')
+    )
 }
 
 
