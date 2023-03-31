@@ -11,7 +11,7 @@ from .settings import (JWT_AUTH_COOKIE,
 @api_view()
 def root_route(request):
     return Response({
-        "message": "Welcome to my social_drf API!"
+        "message": "Welcome to my utraknare api"
     })
 
 
