@@ -26,6 +26,10 @@ REST_FRAMEWORK = {
         if 'DEV' in os.environ
         else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
     )],
+    'DEFAULT_PAGINATION_CLASS':
+    'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    'DATETIME_FORMAT': '%d %b %Y',
 }
 
 REST_USE_JWT = True
@@ -161,7 +165,8 @@ USE_I18N = True
 
 USE_TZ = True
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-rebahama-utraknarenback-ty508lx8274.ws-eu93.gitpod.io']
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-rebahama-utraknarenback-ty508lx8274.ws-eu93.gitpod.io']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
