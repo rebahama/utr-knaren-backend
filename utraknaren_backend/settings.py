@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 from pathlib import Path
 import os
+import re
 import dj_database_url
 
 if os.path.exists('env.py'):
@@ -47,7 +48,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = ['utraknare-drf.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOST'), 'localhost']
 
 if 'CLIENT_ORIGIN_DEV' in os.environ:
     extracted_url = re.match(r'^.+-',
