@@ -101,6 +101,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'utraknaren_backend.urls'
+CORS_ORIGIN_ALLOW_ALL = True
 
 TEMPLATES = [
     {
