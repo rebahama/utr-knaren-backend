@@ -69,7 +69,7 @@ JWT_AUTH_SAMESITE = 'None'
 
 
 REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'utraknaren_backend.serializers.CurrentUserSerializer'
+    'USER_DETAILS_SERIALIZER': 'utraknaren-backend.serializers.CurrentUserSerializer'
 }
 
 INSTALLED_APPS = [
