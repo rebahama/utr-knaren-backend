@@ -173,7 +173,11 @@ USE_I18N = True
 USE_TZ = True
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-rebahama-utraknarenback-faapntqsadt.ws-eu93.gitpod.io/']
+    'https://8000-rebahama-utraknarenback-faapntqsadt.ws-eu93.gitpod.io',
+    'https://utraknaren-front.herokuapp.com',
+    'https://utraknaren-drf.herokuapp.com',
+    ]
+    
 
 
 # Static files (CSS, JavaScript, Images)
