@@ -69,7 +69,7 @@ JWT_AUTH_SAMESITE = 'None'
 
 
 REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'utraknaren_backend.serializer.CurrentUserSerializer'
+    'USER_DETAILS_SERIALIZER': 'utraknaren_backend.serializers.CurrentUserSerializer'
 }
 
 INSTALLED_APPS = [
@@ -177,7 +177,6 @@ CSRF_TRUSTED_ORIGINS = [
     'https://utraknaren-front.herokuapp.com',
     'https://utraknaren-drf.herokuapp.com',
     ]
-    
 
 
 # Static files (CSS, JavaScript, Images)
