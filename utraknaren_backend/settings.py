@@ -18,6 +18,36 @@ if os.path.exists('env.py'):
     import env
 
 
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+SECRET_KEY = os.environ.get('SECRET_KEY')
+
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
+
+# SECURITY WARNING: keep the secret key used in production secret!
+
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = 'DEV' in os.environ
+
+ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOST'), 'localhost']
+
+if 'CLIENT_ORIGIN_DEV' in os.environ:
+    extracted_url = re.match(r'^.+-',
+                             os.environ.get('CLIENT_ORIGIN_DEV', ''),
+                             re.IGNORECASE).group(0)
+    CORS_ALLOWED_ORIGIN_REGEXES = [
+        rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
+    ]
+
+
+CORS_ALLOW_CREDENTIALS = True
+# Application definition
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [(
         'rest_framework.authentication.SessionAuthentication'
@@ -46,33 +76,6 @@ REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'utraknaren_backend.serializer.CurrentUserSerializer'
 }
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'DEV' in os.environ
-
-ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOST'), 'localhost']
-
-if 'CLIENT_ORIGIN_DEV' in os.environ:
-    extracted_url = re.match(r'^.+-',
-                             os.environ.get('CLIENT_ORIGIN_DEV', ''),
-                             re.IGNORECASE).group(0)
-    CORS_ALLOWED_ORIGIN_REGEXES = [
-        rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
-    ]
-
-
-CORS_ALLOW_CREDENTIALS = True
-# Application definition
-
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -82,6 +85,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_filters',
     'rest_framework.authtoken',
     'dj_rest_auth',
     'django.contrib.sites',
@@ -89,7 +93,6 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
-    'django_filters',
     'corsheaders',
 
 
@@ -173,8 +176,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
-
 
 
 # Static files (CSS, JavaScript, Images)
