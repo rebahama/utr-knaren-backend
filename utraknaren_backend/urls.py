@@ -28,5 +28,6 @@ urlpatterns = [
     ),
     path('', include('profiles.urls')),
     path('', include('posts.urls')),
+    path('api-auth/', include('rest_framework.urls')),
 ]
 
