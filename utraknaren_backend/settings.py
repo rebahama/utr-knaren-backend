@@ -34,7 +34,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOST'), 'localhost']
+ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOST'), 'localhost', '8000-rebahama-utraknarenback-zujqv0417sc.ws-eu100.gitpod.io']
 
 if 'CLIENT_ORIGIN_DEV' in os.environ:
     extracted_url = re.match(r'^.+-',
