@@ -10,6 +10,7 @@ class Post(models.Model):
     title = models.CharField(max_length=200, blank=False)
     content = models.CharField(max_length=2000, blank=False)
     calculate = models.ForeignKey(Calculator, on_delete=models.CASCADE, default=1)
+    results = models.CharField(max_length=3000,blank=False, default="")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
