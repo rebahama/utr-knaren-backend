@@ -6,7 +6,7 @@ class PostSerializer(serializers.ModelSerializer):
     is_owner = serializers.SerializerMethodField()
     name = serializers.ReadOnlyField(source='owner.username')
     calculate_name = serializers.ReadOnlyField(source='calculate.price')
-    results = serializers.ReadOnlyField()
+    
 
     def get_is_owner(self, obj):
         """ How to check for profile ownership"""

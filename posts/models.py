@@ -9,7 +9,6 @@ class Post(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=200, blank=False)
     content = models.CharField(max_length=2000, blank=False)
-    results = models.CharField(max_length=3000,blank=False, default="")
     calculate = models.ForeignKey(Calculator, on_delete=models.CASCADE, default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
